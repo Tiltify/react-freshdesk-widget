@@ -58,15 +58,13 @@ class FreshdeskWidget extends Component {
             autofill
         } = this.props;
 
-        const autofills = Object.entries(autofill).map(
-            ([field, value]) => `helpdesk_ticket[${field}]=${value}`
-        );
+        const autofills = convertToQueryString('helpdesk_ticket', autofill);
 
         const queryString = [
             '&widgetType=popup',
             `formTitle=${formTitle}`,
             `submitThanks=${submitThanks}`,
-            ...autofills
+            autofills
         ]
             .filter(e => e)
             .join('&');
